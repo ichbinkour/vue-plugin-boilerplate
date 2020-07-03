@@ -1,9 +1,21 @@
 import VuePluginBoilerplate from './vue-plugin-boilerplate.vue';
 
-export default {
-  install(vue, opts) {
-    vue.component(VuePluginBoilerplate.name, VuePluginBoilerplate)
+const VuePlugin = {
+  install(Vue, opts) {
+    Vue.component(VuePluginBoilerplate.name, VuePluginBoilerplate)
     console.log('Installing the CommentsOverlay plugin!')
-    // Fun will happen here
+
+    Vue.mixin({
+      mounted() {
+        console.log('Mounted!');
+      }
+    });
   }
+}
+
+export default VuePlugin;
+
+
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(VuePlugin)
 }
